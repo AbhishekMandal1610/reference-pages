@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>CSS Reference</title>
         <link rel="stylesheet" href="styles.css">
+        <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     </head>
     <body>
         <nav>
@@ -13,5 +14,414 @@
             </div>
         </nav>
         <h1>CSS Reference</h1>
+        <h2>Table Of Contents</h2>
+        <p>Click on a particular topic to jump directly to that section.</p>
+        <ol class="toc">
+            <li>
+                <a href="#css-selectors">CSS Selectors</a>
+            </li>
+            <li>
+                <a href="#combinators">Combinators</a>
+            </li>
+            <li>
+                <a href="#pseudo-classes">Pseudo Classes</a>
+            </li>
+            <li>
+                <a href="#pseudo-selectors">Pseudo Selectors</a>
+            </li>
+            <li>
+                <a href="#css-rule-specificity">CSS Rule Specificity</a>
+            </li>
+        </ol>
+        <h2 id="css-selectors">CSS SELECTORS</h2>
+        <p>A Document Object Model (or DOM) is an object representation of the content and structure of a web page.</p>
+        <p>A CSS selector applies styles to a specific DOM element or a group of elements. A selector can be any of the following basic types:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Selector Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Type_selectors" target="_blank">Type Selectors</a>
+                    </td>
+                    <td>
+                        The CSS type selector matches elements by node name. In other words, it selects all elements of the given type within a document. (Eg: div, li, a, p etc.)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors" target="_blank">Class Selectors</a>
+                    </td>
+                    <td>
+                        The CSS class selector matches elements based on the contents of their class attribute.(Eg: .active, .box.orange, etc.)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/ID_selectors" target="_blank">ID Selectors</a>
+                    </td>
+                    <td>
+                        The CSS ID selector matches an element based on the value of the element's id attribute. In order for the element to be selected, its id attribute must match exactly the value given in the selector. (Eg: #navbar, # list-1, etc.)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Universal_selectors" target="_blank">Universal Selectors</a>
+                    </td>
+                    <td>
+                        The CSS universal selector (*) matches elements of any type.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors" target="_blank">Attribute Selectors</a>
+                    </td>
+                    <td>
+                        The CSS attribute selector matches elements based on the element having a given attribute explicitly set, with options for defining an attribute value or substring value match. (Eg: a[title="MDN"])
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="combinators">COMBINATORS</h2>
+        <p>Combinators are a type of CSS selector that combine other selectors into more complex or targeted selectors.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Combinator Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator" target="_blank">Descendant Combinator</a>
+                    </td>
+                    <td>
+                        <p>The descendant combinator — typically represented by a single space (" ") character — combines two selectors such that elements matched by the second selector are selected if they have an ancestor (parent, parent's parent, parent's parent's parent, etc.) element matching the first selector. Selectors that utilize a descendant combinator are called descendant selectors.</p>
+                        <div>Syntax:<br>
+                            selector1 selector2 {<br>
+                                /* property declarations */<br>
+                            }
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Child_combinator" target="_blank">Child Combinator</a>
+                    </td>
+                    <td>
+                        <p>The child combinator (>) is placed between two CSS selectors. It matches only those elements matched by the second selector that are the direct children of elements matched by the first.</p>
+                        <div>Syntax:<br>
+                            selector1 > selector2 {<br>
+                                 /* style properties */<br>
+                            }
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Next-sibling_combinator" target="_blank">Adjacent Sibling Selector</a>
+                    </td>
+                    <td>
+                        <p>The adjacent sibling combinator (+) separates two selectors and matches the second element only if it immediately follows the first element, and both are children of the same parent element.</p>
+                        <div>
+                            Syntax:<br>
+                            former_element + target_element {<br>
+                                /* style properties */<br>
+                            }
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Subsequent-sibling_combinator" target="_blank">Subsequent Sibling Combinator</a>
+                    </td>
+                    <td>
+                        <p>The subsequent-sibling combinator (~, a tilde) separates two selectors and matches all instances of the second element that follow the first element (not necessarily immediately) and share the same parent element.</p>
+                        <div>
+                            Syntax:<br>
+                            former_element ~ target_element {<br>
+                                 style properties <br>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="pseudo-classes">Pseudo Classes</h2>
+        <p>A pseudo-class specifies a special state of the selected element(s) and does not refer to any elements or attributes contained in the DOM (hence, pseudo). A pseudo-class is formed by a selector followed by a colon followed by the pseudo-class name (syntax: A:B). Check out the MDN doc on <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes" target="_blank">Pseudo-classes</a> for a full list of pseudo-classes we can use with CSS selectors.</p>
+        <p>The common pseudo-classes are:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>PSEUDO-CLASS</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:active" target="_blank">:active</a>
+                    </td>
+                    <td>
+                        Applies to elements like buttons when activated by a person, like when they "push down" on the button.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:checked" target="_blank">:checked</a>
+                    </td>
+                    <td>
+                        Applies to radio inputs, checkbox inputs, and options in drop downs when the user has toggled it into an "on" state
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:disabled" target="_blank">:disabled</a>
+                    </td>
+                    <td>
+                        The :disabled CSS pseudo-class represents any disabled element. An element is disabled if it can't be activated (selected, clicked on, typed into, etc.) or accept focus. The element also has an enabled state, in which it can be activated or accept focus.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:first-child" target="_blank">:first-child</a>
+                    </td>
+                    <td>
+                        The :first-child CSS pseudo-class represents the first element among a group of sibling elements.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:focus" target="_blank">:focus</a>
+                    </td>
+                    <td>
+                        The :focus CSS pseudo-class represents an element (such as a form input) that has received focus. It is generally triggered when the user clicks or taps on an element or selects it with the keyboard's Tab key.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:hover" target="_blank">:hover</a>
+                    </td>
+                    <td>
+                        The :hover CSS pseudo-class matches when the user interacts with an element with a pointing device, but does not necessarily activate it. It is generally triggered when the user hovers over an element with the cursor (mouse pointer).
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid" target="_blank">:invalid</a>
+                    </td>
+                    <td>
+                        The :invalid CSS pseudo-class represents any &lt;form&gt;, &lt;fieldset&gt;, &lt;input&gt; or other &lt;form&gt; element whose contents fail to validate.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:last-child" target="_blank">:last-child</a>
+                    </td>
+                    <td>
+                        The :last-child CSS pseudo-class represents the last element among a group of sibling elements.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:not" target="_blank">:not</a>
+                    </td>
+                    <td>
+                        The :not() CSS pseudo-class represents elements that do not match a list of selectors. Since it prevents specific items from being selected, it is known as the negation pseudo-class.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:required" target="_blank">:required</a>
+                    </td>
+                    <td>
+                        Applies to form elements that are required.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:valid" target="_blank">:valid</a>
+                    </td>
+                    <td>
+                        Applies to any form element in a valid state.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:visited" target="_blank">:visited</a>
+                    </td>
+                    <td>
+                        Applies to anchor tags of which the user has already been to the URL that the href points to.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="pseudo-selectors">PSEUDO SELECTORS</h2>
+        <p>Like pseudo-classes, pseudo-selectors select pseudo elements in the DOM. The two that most often used are the ::after and the ::before pseudo-selectors.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>PSEUDO-SELECTOR</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::after" target="_blank">::after</a>
+                    </td>
+                    <td>
+                        In CSS, ::after creates a pseudo-element that is the last child of the selected element. It is often used to add cosmetic content to an element with the content property. It is inline by default.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::before" target="_blank">::before</a>
+                    </td>
+                    <td>
+                        In CSS, ::before creates a pseudo-element that is the first child of the selected element. It is often used to add cosmetic content to an element with the content property. It is inline by default.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="css-rule-specificity">CSS RULE SPECIFICITY</h2>
+        <h3>The Four Number Calculation</h3>
+        <p>The four numbers that the specificity calculation are, in increasing order of importance:</p>
+        <ul>
+            <li>the number of tag selectors in the selector</li>
+            <li>the number of class, pseudo-element, and attribute selectors in the selector</li>
+            <li>the number of id selectors in the selector</li>
+            <li>is this an inline style</li>
+        </ul>
+
+        <p>The algorithm to determine the most specific rule goes like this. When comparing two selectors:</p>
+
+        <ol>
+            <li>If one has a greater number of ids, then it wins. If there is a winner, STOP.</li>
+            <li>They must have the same number of ids, so the one with the greater number of classes, pseudo-classes, and attributes wins. If there is a winner, STOP.</li>
+            <li>They must have the same number of ids and the same number of classes, too. The rule with the greatest number of tags wins. If there is a winner, STOP.</li>
+            <li>They have the same number of ids, classes, and tags. The rule that the browser read last wins.</li>
+        </ol>
+
+        <p>Here is a variety of CSS selectors and their three-number scores. Assume that this is the order in which the browser read them from various CSS files.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Selector</th>
+                    <th style="text-align: center;"># of ids</th>
+                    <th style="text-align: center;"># of classes/attributes</th>
+                    <th style="text-align: center;"># of tags</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>.header</code></td>
+                    <td style="text-align: center;">0</td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center;">0</td>
+                </tr>
+                <tr>
+                    <td><code>.nav .current</code></td>
+                    <td style="text-align: center;">0</td>
+                    <td style="text-align: center;">2</td>
+                    <td style="text-align: center;">0</td>
+                </tr>
+                <tr>
+                    <td><code>#main-header</code></td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center;">0</td>
+                    <td style="text-align: center;">0</td>
+                </tr>
+                <tr>
+                    <td><code>#main-header.large.on</code></td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center;">2</td>
+                    <td style="text-align: center;">0</td>
+                </tr>
+                <tr>
+                    <td><code>div.header</code></td>
+                    <td style="text-align: center;">0</td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center;">1</td>
+                </tr>
+                <tr>
+                    <td><code>div#main-header.header</code></td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center;">1</td>
+                </tr>
+                <tr>
+                    <td><code>div</code></td>
+                    <td style="text-align: center;">0</td>
+                    <td style="text-align: center;">0</td>
+                    <td style="text-align: center;">1</td>
+                </tr>
+                <tr>
+                    <td><code>ul &gt; li</code></td>
+                    <td style="text-align: center;">0</td>
+                    <td style="text-align: center;">0</td>
+                    <td style="text-align: center;">2</td>
+                </tr>
+                <tr>
+                    <td><code>ul li a.current</code></td>
+                    <td style="text-align: center;">0</td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center;">3</td>
+                </tr>
+                <tr>
+                    <td><code>ul li</code></td>
+                    <td style="text-align: center;">0</td>
+                    <td style="text-align: center;">0</td>
+                    <td style="text-align: center;">2</td>
+                </tr>
+                <tr>
+                    <td><code>ul.nav li a.current</code></td>
+                    <td style="text-align: center;">0</td>
+                    <td style="text-align: center;">2</td>
+                    <td style="text-align: center;">3</td>
+                </tr>
+                <tr>
+                    <td><code>ul.nav li a</code></td>
+                    <td style="text-align: center;">0</td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center;">3</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!--Back To Top Button-->
+
+        <button onclick="scrollToTopFunction()" id="back-to-top-btn" title="Go to top"><i class="lni lni-angle-double-up"></i></button>
+        <script>
+            // Get the button:
+            let mybutton = document.getElementById("back-to-top-btn");
+
+            // When the user scrolls down 400px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+                    mybutton.style.display = "block";
+                } else {
+                    mybutton.style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function scrollToTopFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
     </body>
 </html>

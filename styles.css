@@ -2,11 +2,21 @@ body{
     font-size: 1.2rem;
     padding-left: 1%;
     padding-right: 1%;
+    background-color: #242424;
+    color:#ddd;
 }
-
+h1{
+    color:#ddd;
+}
+h2{
+    color: #04AA6D;
+}
+h3{
+    text-decoration: underline;
+}
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #333;
+    background-color: #6a6a6a;
     overflow: hidden;
   }
 
@@ -31,6 +41,9 @@ body{
     background-color: #04AA6D;
     color: white;
 }
+.toc li{
+    padding: 4px 0;
+}
 
 table{
     border-collapse: collapse;
@@ -49,7 +62,7 @@ th,td{
 }
 
 thead>tr{
-    background-color: rgb(228 240 245);
+    background-color: #0c573c;
 }
 
 th{
@@ -62,9 +75,24 @@ thead > tr:nth-of-type(1) {
 }
 
 tbody > tr:nth-of-type(2n){
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(50, 50, 50);
 }
 
+tbody > tr > td:nth-of-type(1){
+    text-align: center;
+}
+a{
+    color: #8bcdb5;
+}
+a:hover{
+    color: #04AA6D;
+    text-decoration: none;
+}
+
+pre{
+    font-size: 1rem;
+    display: inline;
+}
 #back-to-top-btn {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
@@ -74,7 +102,7 @@ tbody > tr:nth-of-type(2n){
     border: none; /* Remove borders */
     outline: none; /* Remove outline */
     background-color: #04AA6D; /* Set a background color */
-    color: white; /* Text color */
+    color: #ddd; /* Text color */
     cursor: pointer; /* Add a mouse pointer on hover */
     padding: 15px; /* Some padding */
     border-radius: 100%; /* Rounded corners */
