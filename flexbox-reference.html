@@ -4,8 +4,11 @@
         <meta charset="utf-8">
         <title>Reference Pages</title>
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="prism/prism.css">
+        <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     </head>
     <body>
+        <script src="prism/prism.js"></script>
         <nav>
             <!--Top Navbar-->
             <div class="topnav">
@@ -26,20 +29,14 @@
                     <a href="#basics-terminology">Basics and Terminology</a>
                 </li>
                 <li>
-                    <a href="#pseudo-classes">Pseudo Classes</a>
-                </li>
-                <li>
-                    <a href="#pseudo-selectors">Pseudo Selectors</a>
-                </li>
-                <li>
-                    <a href="#css-rule-specificity">CSS Rule Specificity</a>
+                    <a href="#flexbox-properties">Flexbox Properties</a>
                 </li>
             </ol>
             <div class="content" id="background">
                 <h2>Background</h2>
                 <p>The Flexbox Layout (Flexible Box) module aims at providing a more efficient way to lay out, align and distribute space among items in a container, even when their size is unknown and/or dynamic (thus the word “flex”).</p>
                 <p>The main idea behind the flex layout is to give the container the ability to alter its items’ width/height (and order) to best fill the available space (mostly to accommodate to all kind of display devices and screen sizes). A flex container expands items to fill available free space or shrinks them to prevent overflow.</p>
-                <p>Most importantly, the flexbox layout is direction-agnostic as opposed to the regular layouts (block which is vertically-based and inline which is horizontally-based). While those work well for pages, they lack flexibility (no pun intended) to support large or complex applications (especially when it comes to orientation changing, resizing, stretching, shrinking, etc.).</p>
+                <p>Most importantly, the flexbox layout is direction-agnostic as opposed to the regular layouts (block which is vertically-based and inline which is horizontally-based). While those work well for pages, they lack flexibility to support large or complex applications (especially when it comes to orientation changing, resizing, stretching, shrinking, etc.).</p>
                 <p><strong>Note: </strong>Flexbox layout is most appropriate to the components of an application, and small-scale layouts, while the Grid layout is intended for larger scale layouts.</p>
             </div>
             <div class="content" id="basics-terminology">
@@ -71,6 +68,110 @@
                     </li>
                 </ul>
             </div>
+            <div class="content" id="flexbox-properties">
+                <h2>Flexbox Properties</h2>
+
+                <div id="property-container">
+                    <!-- HTML section for the flexbox container properties -->
+                    <div>
+                        <div class="image-container">
+                            <img src="images/01-container.svg" alt="Diagram showing flexbox container">
+                        </div>
+                        <h3>Properties for the Parent (Flex Container)</h3>
+
+                        <!-- 1st flex container property -->
+                        <div class="properties">
+                            <h4>display</h4>
+                            <p>This defines a flex container: inline or block depending on the given value. It enables a flex context for all it's direct children</p>
+                            <div class="code-example">
+<pre class="language-css"><code>.container{
+    display: flex; /* or inline-flex */
+}
+</code></pre>
+                            </div>
+                            <p>Note that CSS columns have no effect on a flex container.</p>
+                        </div>
+
+                        <!-- 2nd flex container property -->
+                        <div class="properties">
+                            <h4>flex-direction</h4>
+                            <div class="image-container">
+                                <img src="./images/flex-direction.svg" alt="Diagram showing flex direction">
+                            </div>
+                            <p>This establishes the main-axis, thus defining the direction flex items are placed in the flex container. Flexbox is (aside from optional wrapping) a single-direction layout concept. Think of flex items as primarily laying out either in horizontal rows or vertical columns.</p>
+                            <div class="code-example">
+                                <pre><code class="language-css">.container{
+    flex-direction: row | row-reverse | column | column-reverse;
+}</code></pre>
+                            </div>
+                            <ul>
+                                <li>row (default): left to right</li>
+                                <li>row-reverse: right to left</li>
+                                <li>column: top to bottom</li>
+                                <li>column-reverse: bottom to top</li>
+                            </ul>
+                        </div>
+
+                        <!-- 3rd flex container property -->
+                        <div class="properties">
+                            <h4>flex-wrap</h4>
+                            <div class="image-container">
+                                <img src="./images/flex-wrap.svg" alt="Diagram showing flex-wrap">
+                            </div>
+                            <p>By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property.</p>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.container{
+    flex-wrap: nowrap | wrap | wrap-reverse;
+}</code></pre>
+                            </div>
+                            <ul>
+                                <li>nowrap (default): all flex items will be on one line</li>
+                                <li>wrap: flex items will wrap onto multiple lines from top to bottom</li>
+                                <li>wrap-reverse: flex items will wrap onto multiple lines from bottom to top</li>
+                            </ul>
+                        </div>
+                        <div class="properties">
+                            <h4>flex-flow</h4>
+                            <p>This is a shorthand for the flex-direction and flex-wrap properties, which together define the flex container’s main and cross axes. The default value is row nowrap.</p>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.container{
+    flex-flow: column wrap;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- HTML section for the flexbox item properties -->
+                    <div>
+                        <div class="image-container">
+                            <img src="images/02-items.svg" alt="Diagram showing flexbox items">
+                        </div>
+                        <h3>Properties for the Children (Flex Items)</h3>
+                    </div>
+                </div>
+            </div>
+            <button onclick="scrollToTopFunction()" id="back-to-top-btn" title="Go to top"><i class="lni lni-angle-double-up"></i></button>
         </main>
+
+        <script>
+            // Get the button:
+            let mybutton = document.getElementById("back-to-top-btn");
+
+            // When the user scrolls down 400px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+                    mybutton.style.display = "block";
+                } else {
+                    mybutton.style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function scrollToTopFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
     </body>
 </html>
