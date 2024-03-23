@@ -37,7 +37,7 @@
                     <a href="#grid-properties">CSS Grid Properties</a>
                 </li>
                 <li>
-                    <a href="#more-sources">More Sources</a>
+                    <a href="grid-example">Grid Example</a>
                 </li>
             </ol>
             <div class="content" id="intro">
@@ -201,11 +201,283 @@
 }</code></pre>
                             </div>
                         </div>
+                        <div class="properties">
+                            <h4>grid-template-areas</h4>
+                            <p>Defines a grid template by referencing the names of the grid areas which are specified with the grid-area property. Repeating the name of a grid area causes the content to span those cells. A period signifies an empty cell. The syntax itself provides a visualization of the structure of the grid.</p>
+                            <p>Values:</p>
+                            <ul>
+                                <li><strong>grid-area-name</strong> - the name of a grid area specified with grid-area</li>
+                                <li><strong>.</strong> - a period signifies an empty grid cell</li>
+                                <li><strong>none</strong> - no grid areas are defined</li>
+                            </ul>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.container {
+    grid-template-areas:
+    "grid-area-name | . | none | ..."
+    "...";
+
+}</code></pre>
+                            </div>
+                            <p>Example:</p>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.item-a {
+    grid-area: header;
+}
+.item-b{
+    grid-area: main;
+}
+item-c{
+    grid-area: sidebar;
+}
+item-d{
+    grid-area:footer;
+}
+.container{
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "header header header header"
+        "main main . sidebar"
+        "footer footer footer footer";
+}</code></pre>
+                            </div>
+                            <p>That’ll create a grid that’s four columns wide by three rows tall. The entire top row will be composed of the header area. The middle row will be composed of two main areas, one empty cell, and one sidebar area. The last row is all footer.</p>
+                            <div class="image-container">
+                                <img src="./images/grid/dddgrid-template-areas.svg" alt="Image showing an example grid template area">
+                            </div>
+                            <p>Each row in your declaration needs to have the same number of cells.</p>
+                            <p>You can use any number of adjacent periods to declare a single empty cell. As long as the periods have no spaces between them they represent a single cell.</p>
+                            <p>Notice that you’re not naming lines with this syntax, just areas. When you use this syntax the lines on either end of the areas are actually getting named automatically. If the name of your grid area is foo, the name of the area’s starting row line and starting column line will be foo-start, and the name of its last row line and last column line will be foo-end. This means that some lines might have multiple names, such as the far left line in the above example, which will have three names: header-start, main-start, and footer-start.</p>
+                        </div>
+                        <div class="properties">
+                            <h4>grid-template</h4>
+                            <p>A shorthand for setting grid-template-rows, grid-template-columns, and grid-template-areas in a single declaration.</p>
+                            <p>Values:</p>
+                            <ul>
+                                <li><strong>grid-template-rows / grid-template-columns</strong> - sets grid-template-columns and grid-template-rows to the specified values, respectively, and sets grid-template-areas to none</li>
+                                <li><strong>none</strong> - sets all three properties to their initial values</li>
+                            </ul>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.container {
+    grid-template: none | grid-template-rows / grid-template-columns;
+}</code></pre>
+                            </div>
+                            <p>It also accepts a more complex but quite handy syntax for specifying all three. Here’s an example:</p>
+
+                            <div class="code-example">
+                                <pre class="language-css"><code>.container {
+    grid-template:
+        [row1-start] "header header header" 25px [row1-end]
+        [row2-start] "footer footer footer" 25px [row2-end]
+        / auto 50px auto;
+}</code></pre>
+                            </div>
+
+                            <p>That’s equivalent to this:</p>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.container {
+    grid-template-rows: [row1-start] 25px [row1-end row2-start] 25px [row2-end];
+    grid-template-columns: auto 50px auto;
+    grid-template-areas:
+        "header header header"
+        "footer footer footer";
+}</code></pre>
+                            </div>
+                            <p>Since grid-template doesn’t reset the implicit grid properties (grid-auto-columns, grid-auto-rows, and grid-auto-flow), which is probably what you want to do in most cases, it’s recommended to use the grid property instead of grid-template.</p>
+                        </div>
+                        <div class="properties">
+                            <h4>column-gap <br><br> row-gap</h4>
+
+
+                            <p>Specifies the size of the grid lines. You can think of it like setting the width of the gutters between the columns/rows.</p>
+                            <p>Values:</p>
+                            <ul>
+                                <li><strong>line-size</strong> - a length value</li>
+                            </ul>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.container {
+    column-gap: line-size;
+    row-gap: line-size;
+}</code></pre>
+                            </div>
+                            <p>Example:</p>
+
+                            <div class="code-example">
+                                <pre class="language-css"><code>.container {
+    grid-template-columns: 100px 50px 100px;
+    grid-template-rows: 80px auto 80px;
+    column-gap: 10px;
+    row-gap: 15px;
+}</code></pre>
+                            </div>
+                            <div class="image-container">
+                                <img src="./images/grid/dddgrid-gap.svg" alt="Image showing Grid Gap Example">
+                            </div>
+
+                            <p>The gutters are only created between the columns/rows, not on the outer edges.</p>
+                        </div>
+                        <div class="properties">
+                            <h4>gap</h4>
+
+
+                            <p>A shorthand for row-gap and column-gap</p>
+                            <p>Values:</p>
+                            <ul>
+                                <li><strong>grid-row-gap grid-column-gap</strong> - length value</li>
+                            </ul>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.container {
+    gap: grid-row-gap grid-column-gap;
+}</code></pre>
+                            </div>
+                            <p>Example:</p>
+
+                            <div class="code-example">
+                                <pre class="language-css"><code>.container {
+    grid-template-columns: 100px 50px 100px;
+    grid-template-rows: 80px auto 80px;
+    gap: 15px 10px;
+}</code></pre>
+                            </div>
+
+
+                            <p>If no row-gap is specified, it’s set to the same value as column-gap</p>
+                        </div>
                     </div>
 
                     <!-- HTML section for the grid items properties -->
                     <div>
                         <h3>Properties for the Children (Grid Items)</h3>
+                        <div class="properties">
+                            <h4>grid-column-start <br> <br> grid-column-end <br> <br> grid-row-start <br> <br> grid-row-end</h4>
+                            <p>Determines a grid item’s location within the grid by referring to specific grid lines. grid-column-start/grid-row-start is the line where the item begins, and grid-column-end/grid-row-end is the line where the item ends.</p>
+                            <p>Values:</p>
+                            <ul>
+                                <li><strong>line</strong> - can be a number to refer to a numbered grid line, or a name to refer to a named grid line</li>
+                                <li><strong>span number</strong> - the item will span across the provided number of grid tracks</li>
+                                <li><strong>span name</strong> - the item will span across until it hits the next line with the provided name</li>
+                                <li><strong>auto</strong> - indicates auto-placement, an automatic span, or a default span of onee</li>
+                            </ul>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.item {
+    grid-column-start: number | name | span number | span name | auto;
+    grid-column-end: number | name | span number | span name | auto;
+    grid-row-start: number | name | span number | span name | auto;
+    grid-row-end: number | name | span number | span name | auto;
+}</code></pre>
+                            </div>
+                            <p>Example:</p>
+
+                            <div class="code-example">
+                                <pre class="language-css"><code>.item-a {
+    grid-column-start: 2;
+    grid-column-end: five;
+    grid-row-start: row1-start;
+    grid-row-end: 3;
+}</code></pre>
+                            </div>
+
+                            <div class="image-container">
+                                <img src="./images/grid/grid-column-row-start-end-01.svg" alt="">
+                            </div>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.item-b {
+    grid-column-start: 1;
+    grid-column-end: span col4-start;
+    grid-row-start: 2;
+    grid-row-end: span 2;
+}</code></pre>
+                            </div>
+                            <div class="image-container">
+                                <img src="./images/grid/grid-column-row-start-end-02.svg" alt="">
+                            </div>
+                            <p>If no grid-column-end/grid-row-end is declared, the item will span 1 track by default.</p>
+                            <p>Items can overlap each other. You can use z-index to control their stacking order.</p>
+                        </div>
+                        <div class="properties">
+                            <h4>grid-column <br><br> grid-row</h4>
+                            <p>Shorthand for grid-column-start + grid-column-end, and grid-row-start + grid-row-end, respectively.</p>
+                            <p>Values:</p>
+                            <ul>
+                                <li><strong>start-line / end line</strong> - ach one accepts all the same values as the longhand version, including span</li>
+                            </ul>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.item {
+    grid-column: start-line / end-line | start-line / span value;
+    grid-row: start-line / end-line | start-line / span value;
+}</code></pre>
+                            </div>
+                            <p>Example:</p>
+
+                            <div class="code-example">
+                                <pre class="language-css"><code>.item-c {
+    grid-column: 3 / span 2;
+    grid-row: third-line / 4;
+}</code></pre>
+                            </div>
+
+                            <div class="image-container">
+                                <img src="./images/grid/grid-column-row.svg" alt="Image showing grid-column and grid-row properties">
+                            </div>
+
+                            <p>If no end line value is declared, the item will span 1 track by default.</p>
+                        </div>
+                        <div class="properties">
+                            <h4>grid-area</h4>
+                            <p>Gives an item a name so that it can be referenced by a template created with the grid-template-areas property. Alternatively, this property can be used as an even shorter shorthand for grid-row-start + grid-column-start + grid-row-end + grid-column-end.</p>
+                            <p>Values:</p>
+                            <ul>
+                                <li><strong>name</strong> - a name of your choosing</li>
+                                <li><strong>row-start / column-start / row-end / column-end</strong> - can be numbers or named lines</li>
+                            </ul>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.item {
+    grid-area: <name> | <row-start> / <column-start> / <row-end> / <column-end>;
+}</code></pre>
+                            </div>
+                            <p>Example:</p>
+                            <p>As a way to assign a name to the item:</p>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.item-d {xx
+    grid-area: header;
+}</code></pre>
+                            </div>
+                            <p>As the short-shorthand for grid-row-start + grid-column-start + grid-row-end + grid-column-end:</p>
+                            <div class="code-example">
+                                <pre class="language-css"><code>.item-d {
+    grid-area: 1 / col4-start / last-line / 6;
+}</code></pre>
+                            </div>
+                            <div class="image-container">
+                                <img src="./images/grid/grid-area.svg" alt="Image showing grid-area property">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="content" id="grid-example">
+                <h2>Grid Example</h2>
+                <p>This is an example of a 3 X 2 grid that contains 6 images.</p>
+                <div class="grid-container">
+                    <div class="grid-item1">
+                        <a href="https://www.pexels.com/photo/data-codes-through-eyeglasses-577585/" target="_blank"><img src="./images/grid/photo1.png" alt=""></a>
+                    </div>
+                    <div class="grid-item2">
+                        <a href="https://www.pexels.com/photo/person-encoding-in-laptop-574071/" target="_blank"><img src="./images/grid/photo2.png" alt=""></a>
+                    </div>
+                    <div class="grid-item3">
+                        <a href="https://www.pexels.com/photo/photo-of-turned-on-laptop-computer-943096/" target="_blank"><img src="./images/grid/photo3.png" alt=""></a>
+                    </div>
+                    <div class="grid-item4">
+                        <a href="https://www.pexels.com/photo/close-up-photo-of-programming-of-codes-546819/" target="_blank"><img src="./images/grid/photo4.png" alt=""></a>
+                    </div>
+                    <div class="grid-item5">
+                        <a href="https://www.pexels.com/photo/blue-retractable-pen-574070/" target="_blank"><img src="./images/grid/photo5.png" alt=""></a>
+                    </div>
+                    <div class="grid-item6">
+                        <a href="https://www.pexels.com/photo/turned-on-macbook-pro-693859/" target="_blank"><img src="./images/grid/photo6.png" alt=""></a>
                     </div>
                 </div>
             </div>
